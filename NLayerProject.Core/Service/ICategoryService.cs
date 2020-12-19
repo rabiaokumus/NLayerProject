@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayerProject.Core.Repositories
+namespace NLayerProject.Core.Service
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryService : IService<Category>
     {
         Task<IEnumerable<Category>> GetWithProductsByIdAsync(int categoryId);
     }

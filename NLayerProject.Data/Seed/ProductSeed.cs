@@ -18,29 +18,14 @@ namespace NLayerProject.Data.Seed
 
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasData(new Product()
-            {
-                Id = 1,
-                Name = "Cep Telefonu",
-                Price = 12.6m,
-                Stock = 10,
-                CategoryId = _ids[0]
-            }, new Product()
-            {
-                Id = 2,
-                Name = "Laptop",
-                Price = 15.6m,
-                Stock = 12,
-                CategoryId = _ids[1]
-            },
-             new Product()
-             {
-                 Id = 3,
-                 Name = "Akıllı Saat",
-                 Price = 7.6m,
-                 Stock = 10,
-                 CategoryId = _ids[2]
-             });
+            builder.HasData(
+                new Product { Id = 1, Name = "Pilot Kalem", Price = 12.50m, Stock = 100, CategoryId = _ids[0] },
+                    new Product { Id = 2, Name = "Kurşun Kalem", Price = 40.50m, Stock = 200, CategoryId = _ids[0] },
+                        new Product { Id = 3, Name = "Tükenmez Kalem", Price = 500m, Stock = 300, CategoryId = _ids[0] },
+                            new Product { Id = 4, Name = "Cep Telefonu", Price = 12.50m, Stock = 100, CategoryId = _ids[1] },
+                                  new Product { Id = 5, Name = "Akıllı Saat", Price = 12.50m, Stock = 100, CategoryId = _ids[1] },
+                                        new Product { Id = 6, Name = "Laptop", Price = 12.50m, Stock = 100, CategoryId = _ids[1] }
+                );
         }
     }
 }

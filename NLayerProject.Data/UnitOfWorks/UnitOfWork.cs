@@ -12,18 +12,17 @@ namespace NLayerProject.Data.UnitOfWorks
     {
         private readonly AppDbContext _context;
 
+        private ProductRepository _productRepository;
+        private CategoryRepository _CategoryRepository;
+
+        public IProductRepository Products => _productRepository = _productRepository ?? new ProductRepository(_context);
+
+        public ICategoryRepository Categories => _CategoryRepository = _CategoryRepository ?? new CategoryRepository(_context);
+
         public UnitOfWork(AppDbContext appDbContext)
         {
             _context = appDbContext;
         }
-
-        private ProductRepository _productRepository;
-        private CategoryRepository _categoryRepository;
-
-
-        public IProductRepository Products => _productRepository = _productRepository ?? new ProductRepository(_context);
-
-        public ICategoryRepository Categories => _categoryRepository = _categoryRepository ?? new CategoryRepository(_context);
 
         public void Commit()
         {

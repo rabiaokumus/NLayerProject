@@ -22,12 +22,12 @@ namespace NLayerProject.Data.Seed
                 new Category
                 {
                     Id = _ids[0],
-                    Name = "Elektronik Eşya"
+                    Name = "Kırtasiye"
                 },
                 new Category
                 {
                     Id = _ids[1],
-                    Name = "Beyaz Eşya"
+                    Name = "Elektronik Eşya"
                 });
         }
     }

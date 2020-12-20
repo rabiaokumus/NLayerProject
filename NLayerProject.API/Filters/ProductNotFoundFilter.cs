@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.API.Filters
 {
-    public class NotFoundFilter : ActionFilterAttribute
+    public class ProductNotFoundFilter : ActionFilterAttribute
     {
         private readonly IProductService _productService;
         //private readonly IService<Product> _productService;
 
 
-        public NotFoundFilter(IProductService productService)
+        public ProductNotFoundFilter(IProductService productService)
         {
             _productService = productService;
         }

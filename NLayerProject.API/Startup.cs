@@ -64,7 +64,13 @@ namespace NLayerProject.API
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            services.AddScoped<NotFoundFilter>();
+            services.AddScoped<ProductNotFoundFilter>();
+
+            //Filter Tanýmlamadan Çalýþmasý için
+            services.AddControllers(o =>
+            {
+                o.Filters.Add(new ValidationFilter());
+            });
 
         }
 

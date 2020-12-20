@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using NLayerProject.API.Filters;
 
 namespace NLayerProject.API
 {
@@ -62,6 +63,8 @@ namespace NLayerProject.API
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
+            services.AddScoped<NotFoundFilter>();
 
         }
 

@@ -12,14 +12,14 @@ namespace NLayerProject.Core.Service
 
         Task<IEnumerable<TEntity>> GetAllAsync();
 
-        Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> Where(Expression<Func<TEntity, bool>> predicate);
 
         // category.SingleOrDefaultAsync( x => x.name = "telefon")
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
 
-        Task AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
-        Task AddRangeAsync(IEnumerable<TEntity> entities);
+        Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
 
         TEntity Update(TEntity entity);
 

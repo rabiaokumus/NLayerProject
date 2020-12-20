@@ -8,9 +8,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NLayerProject.Core.Repositories;
+using NLayerProject.Core.Service;
 using NLayerProject.Core.UnitOfWorks;
 using NLayerProject.Data;
+using NLayerProject.Data.Repositories;
 using NLayerProject.Data.UnitOfWorks;
+using NLayerProject.Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +34,12 @@ namespace NLayerProject.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service.Services.Service<>));
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -44,7 +54,6 @@ namespace NLayerProject.API
                 });
             });
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

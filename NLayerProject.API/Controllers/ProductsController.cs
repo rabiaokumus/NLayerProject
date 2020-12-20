@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLayerProject.API.DTOs;
+using NLayerProject.API.Filters;
 using NLayerProject.Core.Models;
 using NLayerProject.Core.Service;
 using System;
@@ -48,6 +49,7 @@ namespace NLayerProject.API.Controllers
             return Ok(_mapper.Map<ProductDto>(product));
         }
 
+        [ValidationFilter]
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
         {
@@ -67,8 +69,8 @@ namespace NLayerProject.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
-            var category = _productService.GetByIdAsync(id).Result;
-            _productService.Remove(category);
+            var product = _productService.GetByIdAsync(id).Result;
+            _productService.Remove(product);
 
             return NoContent();
         }

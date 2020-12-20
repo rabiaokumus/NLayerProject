@@ -31,7 +31,7 @@ namespace NLayerProject.API
         }
 
         public IConfiguration Configuration { get; }
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -55,6 +55,12 @@ namespace NLayerProject.API
                 {
                     o.MigrationsAssembly("NLayerProject.Data");
                 });
+            });
+
+            // Annotation'daki hatalarýn dönülmemesi için
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
             });
 
         }

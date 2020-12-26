@@ -25,6 +25,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using NLayerProject.API.DTOs.ErrorDTOs;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using NLayerProject.API.Extensions;
 
 namespace NLayerProject.API
 {
@@ -88,30 +89,7 @@ namespace NLayerProject.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NLayerProject.API v1"));
             }
 
-            app.UseExceptionHandler(config =>
-            {
-                config.Run(async context =>
-                {
-                    context.Response.StatusCode = 500;
-                    context.Response.ContentType = "application/json";
-
-                    var error = context.Features.Get<IExceptionHandlerFeature>();
-
-                    if (error != null)
-                    {
-                        var ex = error.Error;
-
-                        var errorDto = new ErrorDto();
-                        errorDto.Status = 500;
-                        errorDto.Errors.Add(ex.Message);
-
-                        await context.Response.WriteAsync(JsonConvert.SerializeObject(errorDto));
-                    }
-
-
-                });
-            });
-
+            app.UseCustomException();
 
             app.UseHttpsRedirection();
 
